@@ -21,6 +21,7 @@
   "registries": {
     "@bundui": {
       "url": "https://bundui.io/api/registry/{name}.json"
-    }
+    },
+    "@animate-ui": "https://animate-ui.com/r/{name}.json"
   }
 }

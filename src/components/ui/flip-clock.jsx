@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { memo, useEffect, useState } from "react";
@@ -8,34 +8,31 @@ const flipUnitVariants = cva(
   {
     variants: {
       size: {
-        sm: "w-10 min-w-10 h-14 text-3xl", // Small (Compact UI)
+        sm: "w-7 min-w-6 h-10 text-2xl", // Small (Compact UI)
         md: "w-14 min-w-14 h-20 text-5xl", // Medium (Standard sidebar/header)
         lg: "w-17 min-w-17 h-24 text-6xl", // Large (Focus/Hero)
-        xl: "w-22 min-w-22 h-32 text-8xl" // Extra Large (Dashboard/Landing)
+        xl: "w-22 min-w-22 h-32 text-8xl", // Extra Large (Dashboard/Landing)
       },
       variant: {
         default: "bg-primary text-primary-foreground",
         secondary: "bg-secondary text-secondary-foreground",
         destructive: "bg-destructive text-destructive-foreground",
         outline: "border border-input bg-background text-foreground",
-        muted: "bg-muted text-muted-foreground"
-      }
+        muted: "bg-muted text-muted-foreground",
+      },
     },
     defaultVariants: {
       size: "md",
-      variant: "default"
-    }
+      variant: "default",
+    },
   }
 );
 
-const commonCardStyle = cn("absolute inset-x-0 overflow-hidden h-1/2 bg-inherit text-inherit");
+const commonCardStyle = cn(
+  "absolute inset-x-0 overflow-hidden h-1/2 bg-inherit text-inherit"
+);
 
-const FlipUnit = memo(function FlipUnit({
-  digit,
-  size,
-  variant,
-  className
-}) {
+const FlipUnit = memo(function FlipUnit({ digit, size, variant, className }) {
   const [prevDigit, setPrevDigit] = useState(digit);
   const [flipping, setFlipping] = useState(false);
 
@@ -67,7 +64,8 @@ const FlipUnit = memo(function FlipUnit({
           commonCardStyle,
           "z-20 origin-bottom backface-hidden rounded-t-lg",
           flipping && "animate-flip-top"
-        )}>
+        )}
+      >
         <DigitSpan position="top">{prevDigit}</DigitSpan>
       </div>
       {/* 4. Bottom Flap (The NEW digit appearing) */}
@@ -77,20 +75,17 @@ const FlipUnit = memo(function FlipUnit({
           "z-10 origin-top backface-hidden rounded-b-lg translate-y-full",
           flipping && "animate-flip-bottom"
         )}
-        style={{ transform: "rotateX(90deg)" }}>
+        style={{ transform: "rotateX(90deg)" }}
+      >
         <DigitSpan position="bottom">{digit}</DigitSpan>
       </div>
       {/* Center Divider Shadow */}
-      <div
-        className="absolute top-1/2 left-0 w-full h-px -translate-y-1/2 bg-background/50 z-30" />
+      <div className="absolute top-1/2 left-0 w-full h-px -translate-y-1/2 bg-background/50 z-30" />
     </div>
   );
 });
 
-function DigitSpan({
-  children,
-  position
-}) {
+function DigitSpan({ children, position }) {
   return (
     <span
       className={cn(
@@ -101,49 +96,56 @@ function DigitSpan({
       style={{
         // If it's the top half, align the full span to the top
         // If it's the bottom half, shift the full span up so its bottom half shows
-        top: position === "top" ? "0%" : "-100%"
-      }}>
+        top: position === "top" ? "0%" : "-100%",
+      }}
+    >
       {children}
     </span>
   );
 }
 
-const flipClockVariants = cva("relative flex justify-center items-center font-mono font-medium", {
-  variants: {
-    size: {
-      sm: "text-3xl space-x-1",
-      md: "text-5xl space-x-2",
-      lg: "text-6xl space-x-2",
-      xl: "text-8xl space-x-3"
+const flipClockVariants = cva(
+  "relative flex justify-center items-center font-mono font-medium",
+  {
+    variants: {
+      size: {
+        sm: "text-3xl space-x-1",
+        md: "text-5xl space-x-2",
+        lg: "text-6xl space-x-2",
+        xl: "text-8xl space-x-3",
+      },
+      variant: {
+        default: "",
+        secondary: "",
+        destructive: "",
+        outline: "",
+        muted: "",
+      },
     },
-    variant: {
-      default: "",
-      secondary: "",
-      destructive: "",
-      outline: "",
-      muted: ""
-    }
-  },
-  defaultVariants: {
-    size: "md",
-    variant: "default"
+    defaultVariants: {
+      size: "md",
+      variant: "default",
+    },
   }
-});
+);
 
 const heightMap = {
   sm: "text-4xl",
   md: "text-5xl",
   lg: "text-6xl",
-  xl: "text-8xl"
+  xl: "text-8xl",
 };
 
-function ClockSeparator({
-  size
-}) {
+function ClockSeparator({ size }) {
   return (
     <span
-      className={cn("text-center -translate-y-[8%]", size ? heightMap[size] : heightMap["md"])}>:
-          </span>
+      className={cn(
+        "text-center -translate-y-[8%]",
+        size ? heightMap[size] : heightMap["md"]
+      )}
+    >
+      :
+    </span>
   );
 }
 
@@ -191,7 +193,8 @@ export default function FlipClock({
     <div
       className={cn(flipClockVariants({ size, variant }), className)}
       aria-live="polite"
-      {...props}>
+      {...props}
+    >
       <span className="sr-only absolute">
         {`${time.hours}:${time.minutes}:${time.seconds}`}
       </span>
@@ -199,24 +202,44 @@ export default function FlipClock({
       {shouldShowDays && (
         <>
           {daysStr.split("").map((digit, i) => (
-            <FlipUnit key={`d-${i}`} digit={digit} size={size} variant={variant} />
+            <FlipUnit
+              key={`d-${i}`}
+              digit={digit}
+              size={size}
+              variant={variant}
+            />
           ))}
           <ClockSeparator size={size} />
         </>
       )}
       {/* Hours */}
       {hoursStr.split("").map((digit, index) => (
-        <FlipUnit key={`hour-${index}`} digit={digit} size={size} variant={variant} />
+        <FlipUnit
+          key={`hour-${index}`}
+          digit={digit}
+          size={size}
+          variant={variant}
+        />
       ))}
       <ClockSeparator size={size} />
       {/* Minutes */}
       {minutesStr.split("").map((digit, index) => (
-        <FlipUnit key={`minute-${index}`} digit={digit} size={size} variant={variant} />
+        <FlipUnit
+          key={`minute-${index}`}
+          digit={digit}
+          size={size}
+          variant={variant}
+        />
       ))}
       <ClockSeparator size={size} />
       {/* Seconds */}
       {secondsStr.split("").map((digit, index) => (
-        <FlipUnit key={`second-${index}`} digit={digit} size={size} variant={variant} />
+        <FlipUnit
+          key={`second-${index}`}
+          digit={digit}
+          size={size}
+          variant={variant}
+        />
       ))}
       {/* Injected Keyframes (The Shadcn "Cheat Code") */}
       <style jsx global>{`
@@ -265,7 +288,7 @@ function getTime(countdown, targetDate) {
       days: 0,
       hours: now.getHours(),
       minutes: now.getMinutes(),
-      seconds: now.getSeconds()
+      seconds: now.getSeconds(),
     };
   }
 
@@ -277,6 +300,6 @@ function getTime(countdown, targetDate) {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
     minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60)
+    seconds: Math.floor((diff / 1000) % 60),
   };
 }

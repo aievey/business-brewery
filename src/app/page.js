@@ -1,12 +1,36 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import FlipClock from "@/components/ui/flip-clock";
-import HeroSection from "@/components/hero-sections-05";
+import Cover from "@/components/cover";
+import {
+  TypingText,
+  TypingTextCursor,
+} from "@/components/animate-ui/primitives/texts/typing";
 
 export default function Home() {
   return (
-    <>
-      <HeroSection />
+    <div className="mt-6">
+      <Cover />
+      <div className="mb-5 text-center text-4xl ">
+        <TypingText
+          text="Coming soon..."
+          delay={200}
+          duration={100}
+          holdDelay={1000}
+          className="text-primary"
+          loop={true}
+        >
+          <TypingTextCursor className="!h-7 !w-1 text-amber-400 rounded-full ml-1" />
+        </TypingText>
+        {/* <h2 className="text-center text-4xl">|</h2> */}
+      </div>
+      <FlipClock
+        countdown="true"
+        variant={"secondary"}
+        size={"sm"}
+        showDays="auto"
+        targetDate={new Date("01/21/2026")}
+      />
       {/* <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 ">
         <Image
           className=""
@@ -51,6 +75,6 @@ export default function Home() {
           </a>
         </div>
       </main> */}
-    </>
+    </div>
   );
 }
