@@ -9,7 +9,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="mt-6">
+    <div className="mt-20">
       <Cover />
       <div className="mb-5 text-center text-4xl ">
         <TypingText
