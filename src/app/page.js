@@ -20,7 +20,7 @@ export default function Home() {
           className="text-primary"
           loop={true}
         >
-          <TypingTextCursor className="!h-7 !w-1 text-amber-400 rounded-full ml-1" />
+          <TypingTextCursor className="h-7! w-1! text-amber-400 rounded-full ml-1" />
         </TypingText>
         {/* <h2 className="text-center text-4xl">|</h2> */}
       </div>
