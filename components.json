@@ -22,6 +22,7 @@
     "@bundui": {
       "url": "https://bundui.io/api/registry/{name}.json"
     },
-    "@animate-ui": "https://animate-ui.com/r/{name}.json"
+    "@animate-ui": "https://animate-ui.com/r/{name}.json",
+    "@efferd": "https://efferd.com/r/{name}.json"
   }
 }
