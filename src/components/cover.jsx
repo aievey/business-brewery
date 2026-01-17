@@ -6,8 +6,8 @@ export default function Cover() {
       <div className="h-3/10 md:h-full md:w-4/10 flex  justify-center items-center md:justify-end">
         <div className="w-9/10">
           <div className="flex justify-center items-center xl:w-full xl:justify-end">
-            <div className="text-left py-4 text-white">
-              <h2 className="font-extrabold py-4 text-4xl/1 md:text-5xl/1">
+            <div className="text-left py-4 text-white md:text-right">
+              <h2 className="font-extrabold py-4 text-4xl/1 md:text-5xl ">
                 Business Brewery
               </h2>
               <p className="font-extralight text-sm">
@@ -29,7 +29,7 @@ export default function Cover() {
             width={1200}
             priority
             alt="business-brewery-cover "
-            className="aspect-auto h-full object-cover z-0"
+            className="aspect-auto h-full object-cover z-0 md:mask-l-from-90%"
           />
         </div>
         <div className="w-full absolute -bottom-15 xl:-bottom-8 left-1/2 transform -translate-x-1/2 flex justify-center items-center text-l shadow h-1/11 bg-white/90 py-10 xl:p-0 xl:w-1/2 rounded-2xl z-10  backdrop-blur-[5px]">
